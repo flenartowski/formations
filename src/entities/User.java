@@ -5,50 +5,50 @@
  */
 package entities;
 
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author francoise
  */
 @Entity
-@Table(
-    uniqueConstraints={
-        @UniqueConstraint(name="specialite_unique", columnNames={"nomSpecialite"})
-    })
-public class Specialite implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @Column(length =50)
-    private String nomSpecialite;
 
-    public String getNomSpecialite() {
-        return nomSpecialite;
-    }
-
-    public void setNomSpecialite(String nomSpecialite) {
-        this.nomSpecialite = nomSpecialite;
-    }
-    
     public Long getId() {
         return id;
     }
+    @Column(length =50)
+    private String nom;
 
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+    
+    @Column(length =50)
+    private String prenom;
+    
     public void setId(Long id) {
         this.id = id;
     }
@@ -63,10 +63,10 @@ public class Specialite implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Specialite)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        Specialite other = (Specialite) object;
+        User other = (User) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -75,23 +75,7 @@ public class Specialite implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Specialite[ id=" + id + " ]";
+        return "entities.User[ id=" + id + " ]";
     }
-
-    public Specialite(String nomSpecialite) {
-        this.nomSpecialite = nomSpecialite;
-    }
-
-    public Specialite() {
-    }
-   /* @ManyToMany(mappedBy="specialite")
-    private List <Formation> formations=new ArrayList();
-
-    public List<Formation> getFormations() {
-        return formations;
-    }
-
-    public void setFormations(List<Formation> formations) {
-        this.formations = formations;
-    }*/
+    
 }

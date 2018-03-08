@@ -29,6 +29,30 @@ public class Inscription implements Serializable {
     private Long id;
     @Temporal(TemporalType.DATE)
     private Date dateInscription;
+    
+    @OneToOne
+    @JoinColumn(nullable=false)
+    private User user;
+    
+    @OneToOne
+    @JoinColumn(nullable=false)
+    private StatutProfessionnel statut;
+
+    public StatutProfessionnel getStatut() {
+        return statut;
+    }
+
+    public void setStatut(StatutProfessionnel statut) {
+        this.statut = statut;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Date getDateInscription() {
         return dateInscription;

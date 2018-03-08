@@ -10,6 +10,8 @@ import entities.Formation;
 import entities.Inscription;
 import entities.Session;
 import entities.Specialite;
+import entities.StatutProfessionnel;
+import entities.User;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,13 +50,34 @@ public class JavaApplicationFormations {
         calendrier.add(jour1);
         //calendrier.add(jour2);
         session.setCalendriers(calendrier);
+        User prof=new User();
+        prof.setNom("lena");
+        prof.setPrenom("françoise");
+        User prof2=new User();
+        prof2.setNom("dubois");
+        prof2.setPrenom("françoise");
+        User eleve=new User();
+        eleve.setNom("toto");
+        eleve.setPrenom("jules");
+        session.setUser(prof);
+        inscription.setUser(eleve);
+        formation.getProfesseurs().add(prof);
+        formation.getProfesseurs().add(prof2);
+        StatutProfessionnel etudiant=new StatutProfessionnel("étudiant");
+        inscription.setStatut(etudiant);
         em.getTransaction().begin();
+        
         em.persist(specialite);
         em.persist(specialite2);
         em.persist(formation);
         em.persist(jour1);
         //em.persist(jour2);
+        em.persist(prof);
+         em.persist(prof2);
+        em.persist(eleve);
         em.persist(session);
+        em.persist(etudiant);
+       
         em.persist(inscription);
         em.getTransaction().commit();
        

@@ -6,12 +6,15 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -117,4 +120,16 @@ public class Formation implements Serializable {
     public void setSpecialite(Specialite specialite) {
         this.specialite = specialite;
     }
+    @ManyToMany
+    private List <User> professeurs=new ArrayList();
+
+    public List<User> getProfesseurs() {
+        return professeurs;
+    }
+
+    public void setProfesseurs(List<User> professeurs) {
+        this.professeurs = professeurs;
+    }
+
+   
 }
